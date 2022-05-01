@@ -78,13 +78,14 @@ var criteria = function() {
         var pickedLowercase = passwordLowercase[randomNumber(0,26)];  
         console.log(pickedLowercase)
       }
-      //return pickedLowercase;
+      return pickedLowercase;
     }
 
     var generatePasswordUppercase = function() {
       for (j=0; j < parseInt(checkuppercase); j++) {
         var pickedUppercase = passwordUppercase[randomNumber(0,26)];  
-        console.log(pickedUppercase)
+        console.log(pickedUppercase) 
+       
       }
       return pickedUppercase;
     }
@@ -92,7 +93,7 @@ var criteria = function() {
     var generatePasswordNumbers = function() {
       for (k=0; k < (parseInt(numbers)); k++) {
         var pickedNumbers = randomNumber(0,9);  
-        console.log(pickedNumers)
+        console.log(pickedNumbers)
       }
       return pickedNumbers;
     }
@@ -105,7 +106,7 @@ var criteria = function() {
       return pickedSpecial;
     }
 
-    var password = generatePasswordLowercase();
+    var password = generatePasswordLowercase() + generatePasswordUppercase() + generatePasswordNumbers() + generatePasswordSpecial();
     var passwordText = document.querySelector("#password");
   
     passwordText.value = password;
