@@ -5,12 +5,12 @@
 
 
 // Write password to the #password input
-//function writePassword() {
-  //var password = generatePassword();
- // var passwordText = document.querySelector("#password");
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
 
- // passwordText.value = password;
-//}
+  passwordText.value = password;
+}
 
 // Add event listener to generate button
 var characters 
@@ -18,17 +18,33 @@ var characters
 
 var criteria = function() {
 
-  var characters = window.prompt("How many characters do you want? Please enter a number 1 - 10.");
+  characters = null;
+  numbers = null;
+  specialcharacters = null;  
 
-  var numbers = window.prompt("How many numbers do you want? Please enter a number 1 - 10.");
+  var characters = window.prompt("How many characters do you want in your password? Please enter a number 1 - 10.");
 
-  var specialcharacters = window.prompt("How many special characters do you want? Please enter a number 1 - 10.");
+  if (characters === null) {return}
+
+  var numbers = window.prompt("How many numbers do you want in your password? Please enter a number 1 - 10.");
+
+  //if (characters === null) {return}
+
+  var specialcharacters = window.prompt("How many special characters do you want in your password? Please enter a number 1 - 10.");
+
+  //if (characters === null) {return}
 
   if ((Number.isInteger(parseInt(characters))) === false || (Number.isInteger(parseInt(numbers))) === false || (Number.isInteger(parseInt(specialcharacters))) === false) {
   window.alert("At least one of the values you entered is not a number. Please try again.");
   criteria();
  }
-  //else { writePassword() }
+
+ var passlength = parseInt(characters) + parseInt(numbers) + parseInt(specialcharacters);
+ var confirmLength = window.confirm("To confirm, you selected a total of " + passlength + " characters for your password. Is this correct? If not, you can re-enter the number of each character type you'd like.");
+
+ console.log(confirmLength)
+ if (confirmLength === false) {criteria()};
+  else { writePassword() }
 }
 
 var generateBtn = document.querySelector("#generate");
