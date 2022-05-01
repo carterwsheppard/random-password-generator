@@ -5,17 +5,11 @@
 
 
 // Write password to the #password input
-//function writePassword() {
-  //var password = generatePassword();
-  //var passwordText = document.querySelector("#password");
-
-  //passwordText.value = password;
-//}
+//
 
 // Add event listener to generate button
 var passwordLowercase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var passwordUppercase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-var passwordNumbers = [1,2,3,4,5,6,7,8,9,0];
 var passwordSpecialCharacters = ["!","”","#","$","%","&","’","(",")","*","+",",","-",".","/",":",";","<","=",">","?","@","[","]","^","_","`","{","|","}","~"];
 
 var reset = function() {
@@ -23,6 +17,12 @@ var reset = function() {
   numbers = null;
   specialcharacters = null;
 }
+
+var randomNumber = function(min, max) {
+  var value = Math.floor(Math.random() * (max - min) + min);
+
+  return value;
+};
 
 var criteria = function() {
 
@@ -71,17 +71,53 @@ var criteria = function() {
    criteria();
   };
 
+  function writePassword() {
+
+    var generatePasswordLowercase = function() {
+      for (i=0; i < (parseInt(characters) - parseInt(checkuppercase)); i++) {
+        var pickedLowercase = passwordLowercase[randomNumber(0,26)];  
+        console.log(pickedLowercase)
+      }
+      //return pickedLowercase;
+    }
+
+    var generatePasswordUppercase = function() {
+      for (j=0; j < parseInt(checkuppercase); j++) {
+        var pickedUppercase = passwordUppercase[randomNumber(0,26)];  
+        console.log(pickedUppercase)
+      }
+      return pickedUppercase;
+    }
+
+    var generatePasswordNumbers = function() {
+      for (k=0; k < (parseInt(numbers)); k++) {
+        var pickedNumbers = randomNumber(0,9);  
+        console.log(pickedNumers)
+      }
+      return pickedNumbers;
+    }
+
+    var generatePasswordSpecial = function() {
+      for (z=0; z < (parseInt(specialcharacters)); z++) {
+        var pickedSpecial = passwordSpecialCharacters[randomNumber(0,31)];  
+        console.log(pickedSpecial)
+      }
+      return pickedSpecial;
+    }
+
+    var password = generatePasswordLowercase();
+    var passwordText = document.querySelector("#password");
+  
+    passwordText.value = password;
+  
+  }
+
+  writePassword();
+
+
 }
 
 var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", criteria);
-
- 
- 
- console.log(characters);
- console.log(numbers);
- console.log(specialcharacters);
- console.log(checkuppercase);
-
 
 
