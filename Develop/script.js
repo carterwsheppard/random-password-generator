@@ -50,6 +50,8 @@ var criteria = function() {
  var confirmLength = window.confirm("To confirm, you selected a total of " + passlength + " characters for your password. " + parseInt(characters) + " alphabetic characters will be used, " + parseInt(numbers) + " numeric characters will be used, and " + parseInt(specialcharacters) + " special characters will be used. Is this correct? If not, you can re-enter the number of each character type you'd like.");
  
  if (confirmLength === false) {criteria()};
+
+ var checkuppercase = window.prompt("By default, this password generator will yield only lower case alphabetical characters. If you would like to include some upper case values, please enter the number of upper case characters you would like. Otherwise, press cancel. Note that the max upper case characters you choose must be less that or equal to the " + parseInt(characters) + " total alphabetical characters you chose originally.")
 }
 
 var generateBtn = document.querySelector("#generate");
