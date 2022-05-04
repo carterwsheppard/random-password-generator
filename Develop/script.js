@@ -36,11 +36,11 @@ var criteria = function() {
 
   var numbers = window.prompt("How many numbers do you want in your password? Please enter a number 0 - 128.");
 
-  //if (characters === null) {return}
+  if (numbers === null) {return}
 
   var specialcharacters = window.prompt("How many special characters do you want in your password? Please enter a number 0 - 128.");
 
-  //if (characters === null) {return}
+  if (specialcharacters === null) {return}
 
   var checkuppercase = window.prompt("By default, this password generator will yield only lower case alphabetical characters. If you would like to include some upper case values, please enter the number of upper case characters you would like. Otherwise, press cancel. Note that the max upper case characters you choose must be less that or equal to the " + parseInt(characters) + " total alphabetical characters you chose originally.")
 
@@ -62,6 +62,7 @@ var criteria = function() {
    window.alert("Sorry - your selections did not meet the criteria for having 8 - 128 total characters. Please try again.");
    reset();
    criteria();
+   return;
  }
 
  var confirmLength = window.confirm("To confirm, you selected a total of " + passlength + " characters for your password. " + parseInt(characters) + " alphabetic characters will be used (with " + parseInt(checkuppercase) + " upper case letters)," + parseInt(numbers) + " numeric characters will be used, and " + parseInt(specialcharacters) + " special characters will be used. Is this correct? If not, you can re-enter the number of each character type you'd like.");
@@ -71,12 +72,17 @@ var criteria = function() {
    criteria();
   };
 
+ var testArray = [];
+
   function writePassword() {
 
     var generatePasswordLowercase = function() {
+      console.log(characters);
+      console.log(checkuppercase);
       for (i=0; i < (parseInt(characters) - parseInt(checkuppercase)); i++) {
         var pickedLowercase = passwordLowercase[randomNumber(0,26)];  
         console.log(pickedLowercase)
+        testArray.push(pickedLowercase);
       }
       return pickedLowercase;
     }
@@ -85,7 +91,7 @@ var criteria = function() {
       for (j=0; j < parseInt(checkuppercase); j++) {
         var pickedUppercase = passwordUppercase[randomNumber(0,26)];  
         console.log(pickedUppercase) 
-       
+        testArray.push(pickedUppercase);
       }
       return pickedUppercase;
     }
@@ -94,6 +100,7 @@ var criteria = function() {
       for (k=0; k < (parseInt(numbers)); k++) {
         var pickedNumbers = randomNumber(0,9);  
         console.log(pickedNumbers)
+        testArray.push(pickedNumbers);
       }
       return pickedNumbers;
     }
@@ -102,11 +109,19 @@ var criteria = function() {
       for (z=0; z < (parseInt(specialcharacters)); z++) {
         var pickedSpecial = passwordSpecialCharacters[randomNumber(0,31)];  
         console.log(pickedSpecial)
+        testArray.push(pickedSpecial);
       }
       return pickedSpecial;
     }
 
-    var password = generatePasswordLowercase() + generatePasswordUppercase() + generatePasswordNumbers() + generatePasswordSpecial();
+    generatePasswordLowercase();
+    generatePasswordUppercase();
+    generatePasswordNumbers();
+    generatePasswordSpecial();
+  
+    console.log(testArray);
+
+    var password = testArray;
     var passwordText = document.querySelector("#password");
   
     passwordText.value = password;
