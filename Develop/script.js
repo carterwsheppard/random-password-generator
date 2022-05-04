@@ -119,7 +119,7 @@ var criteria = function() {
     generatePasswordNumbers();
     generatePasswordSpecial();
   
-    console.log(testArray);
+    //UPDATE HERE THE var password to randomize
 
     var password = testArray;
     var passwordText = document.querySelector("#password");
