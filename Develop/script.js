@@ -48,12 +48,14 @@ var criteria = function() {
   window.alert("At least one of the values you entered is not a number. Please try again.");
   reset();
   criteria();
+  return;
  }
 
  if (parseInt(checkuppercase) > parseInt(characters)) {
    window.alert("You cannot choose to have more upper case characters than total alphabetical characters. Please try again.");
   reset();
   criteria();
+  return;
  }
 
  var passlength = parseInt(characters) + parseInt(numbers) + parseInt(specialcharacters);
@@ -70,6 +72,7 @@ var criteria = function() {
  if (confirmLength === false) {
    reset();
    criteria();
+   return;
   };
 
  var testArray = [];
@@ -120,8 +123,12 @@ var criteria = function() {
     generatePasswordSpecial();
   
     //UPDATE HERE THE var password to randomize
+    var randomTestArray = testArray.sort(()=>{
+      let val = Math.random() - 0.5;
+      return val;
+    });
 
-    var password = testArray;
+    var password = randomTestArray.join('');
     var passwordText = document.querySelector("#password");
   
     passwordText.value = password;
